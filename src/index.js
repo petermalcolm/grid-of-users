@@ -6,7 +6,7 @@ const data = require('./data.js');
 
 function Box(props) {
 	return (
-		<div className="box">
+		<div className={'box priority' + props.person.priority} >
 			<h2 className="name">{props.person.name}</h2>
 			<span className="age">Age: {props.person.age}</span>
 			<span className="category">Category: {props.person.category}</span>

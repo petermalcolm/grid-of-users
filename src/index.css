@@ -33,14 +33,14 @@ h2.name {
 	margin: 10px;
 }
 .priority1 {
-	background-color: orange;
+	background-color: #FFEEAA; /* orange */
 }
 .priority2 {
-	background-color: green;
+	background-color: #CCEECC; /* green */
 }
 .priority3 {
-	background-color: blue;
+	background-color: #CCEEFF; /* blue */
 }
 .priority4 {
-	background-color: purple;
+	background-color: #EEDDFF; /* purple */
 }
