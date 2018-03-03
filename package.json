@@ -4,7 +4,10 @@
   "description": "A page that displays a grid of information about a group of people",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/petermalcolm/grid-of-users/issues"
   },
-  "homepage": "https://github.com/petermalcolm/grid-of-users#readme"
+  "homepage": "https://github.com/petermalcolm/grid-of-users#readme",
+  "devDependencies": {
+    "react-scripts": "^1.1.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "redux": "^3.7.2"
+  }
 }
