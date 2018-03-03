@@ -2,7 +2,7 @@
   "name": "grid-of-users",
   "version": "1.0.0",
   "description": "A page that displays a grid of information about a group of people",
-  "main": "main.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

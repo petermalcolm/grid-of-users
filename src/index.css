@@ -1,0 +1,31 @@
+/* FONTS */
+h2.boxName {
+	 font-size: 16px;
+	 font-weight: bold;
+}
+.age {
+	font-size: 12px;
+	font-style: italic;
+}
+.category {
+	font-size: 12px;
+	font-style: normal;
+}
+
+/* BOXES */
+.box {
+	width: 300px;
+	border: 2px solid #000000;
+}
+.priority1 {
+	background-color: orange;
+}
+.priority2 {
+	background-color: green;
+}
+.priority3 {
+	background-color: blue;
+}
+.priority4 {
+	background-color: purple;
+}
