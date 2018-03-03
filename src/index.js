@@ -16,7 +16,24 @@ function Box(props) {
 
 class Grid extends React.Component {
   render() {
-		var personList = data.data.map(function(person){
+  		const that = this;
+		var personList = data.data.sort(function(personA,personB){
+				switch(that.props.sortedBy) {
+				    case 'az':
+				        return personA.name.localeCompare(personB.name);
+				        break;
+				    case 'priority':
+				        return personA.priority - personB.priority;
+				        break;
+				    default:
+				        return -1;
+				}
+			}).filter(function(person){
+				if( '' === that.props.filteredBy ) {
+					return true;
+				}
+				return person.category === that.props.filteredBy
+			}).map(function(person){
 			    return (
 			        <Box person={person} key={person.name} />
 				);
@@ -84,12 +101,33 @@ class Sorter extends React.Component {
 }
 
 class Content extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			filteredBy: '',
+			sortedBy: ''
+		};
+	}
+	handleFilter(newFilter) {
+		this.setState({
+			filteredBy: newFilter,
+			sortedBy: this.state.sortedBy
+		})
+	}
+	handleSort(newSort) {
+		this.setState({
+			filteredBy: this.state.filteredBy,
+			sortedBy: newSort
+		})
+	}
 	render() {
 		return (
 			<div className="content">
 				<Filterset />
 				<hr />
-				<Grid />
+				<Grid 
+				filteredBy={this.state.filteredBy}
+				sortedBy={this.state.sortedBy} />
 			</div>
 		);
 	}
