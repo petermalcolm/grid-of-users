@@ -18,10 +18,18 @@ h2.name {
 	display: block;
 }
 
-/* GRID, BOXES */
+/* CONTENT, SORTER, FILTER, GRID, BOXES */
+.content {
+	width: 800px;
+}
+.filter, .sorter {
+	width: max-content;
+}
+fieldset {
+	border: none;
+}
 .grid {
 	float: left;
-	width: 800px;
 }
 .box {
 	display: inline;

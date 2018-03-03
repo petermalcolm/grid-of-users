@@ -27,7 +27,70 @@ class Grid extends React.Component {
 	}
 }
 
+class Filterset extends React.Component {
+	render() {
+		return (
+			<form className="filterset">
+				<Filter />
+				<Sorter />
+			</form>
+		);
+	}
+}
+
+class Filter extends React.Component {
+	render() {
+		var categories = data.data.reduce(function(carry, item){
+			if(item.category && !~carry.indexOf(item.category)) { carry.push(item.category); }
+			return carry;
+		}, [] );
+		var inputList = categories.sort().map(function(category){
+			return (
+				<div key={category}>
+					<input 
+						type="radio" 
+						key={"radio-"+category}
+					 	name="category"
+					 	value={"category"+category} />
+					<label
+						htmlFor={"category"+category}
+						key={"label-"+category} >
+					Category {category}
+					</label>
+				</div>
+			);
+		});
+		return (
+			<fieldset className="filter">
+				{inputList}
+			</fieldset>
+		);
+	}
+}
+
+class Sorter extends React.Component {
+	render() {
+		return (
+			<fieldset className="sorter">
+				
+			</fieldset>
+		);
+	}
+}
+
+class Content extends React.Component {
+	render() {
+		return (
+			<div className="content">
+				<Filterset />
+				<hr />
+				<Grid />
+			</div>
+		);
+	}
+}
+
 ReactDOM.render(
-  <Grid />,
+  <Content />,
   document.getElementById('root')
 );
