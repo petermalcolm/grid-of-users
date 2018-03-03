@@ -1,21 +1,30 @@
 /* FONTS */
-h2.boxName {
-	 font-size: 16px;
-	 font-weight: bold;
+body {
+	font-family: sans-serif;
+}
+h2.name {
+	line-height: 0em;
+	font-size: 16px;
+	font-weight: bold;
 }
 .age {
 	font-size: 12px;
 	font-style: italic;
+	display: block;
 }
 .category {
 	font-size: 12px;
 	font-style: normal;
+	display: block;
 }
 
 /* BOXES */
 .box {
-	width: 300px;
+	text-align: center;
+	width: 200px;
 	border: 2px solid #000000;
+	padding: 10px;
+	margin: 10px;
 }
 .priority1 {
 	background-color: orange;
