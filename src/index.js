@@ -16,13 +16,13 @@ function Box(props) {
 
 class Grid extends React.Component {
   render() {
-		var namesList = data.data.map(function(person){
+		var personList = data.data.map(function(person){
 			    return (
-			        <Box person={person} />
+			        <Box person={person} key={person.name} />
 				);
 			});
 		return (
-			<div className="grid">{ namesList }</div>
+			<div className="grid">{ personList }</div>
 		);
 	}
 }
