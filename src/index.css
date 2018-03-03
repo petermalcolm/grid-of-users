@@ -24,6 +24,14 @@ h2.name {
 }
 .filter, .sorter {
 	width: max-content;
+	float: left;
+}
+.sorter {
+	padding: 6px;
+}
+form {
+	float: left;
+	width: 100%;
 }
 fieldset {
 	border: none;

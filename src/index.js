@@ -71,9 +71,14 @@ class Filter extends React.Component {
 class Sorter extends React.Component {
 	render() {
 		return (
-			<fieldset className="sorter">
-				
-			</fieldset>
+			<div className="sorter">
+				<span>Sort By </span>
+				<select>
+					<option value="featured" key="featured">Featured</option>
+					<option value="az" key="az">A - Z</option>
+					<option value="priority" key="priority">Priority</option>
+				</select>
+			</div>
 		);
 	}
 }
