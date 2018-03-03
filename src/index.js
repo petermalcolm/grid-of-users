@@ -22,7 +22,7 @@ class Grid extends React.Component {
 				);
 			});
 		return (
-			<div>{ namesList }</div>
+			<div className="grid">{ namesList }</div>
 		);
 	}
 }
