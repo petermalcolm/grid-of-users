@@ -17,14 +17,14 @@ function Box(props) {
 class Grid extends React.Component {
   render() {
   		const that = this;
-		var personList = data.data.sort(function(personA,personB){
+		var personList = data.data.slice().sort(function(personA,personB){
 				switch(that.props.sortedBy) {
 				    case 'az':
 				        return personA.name.localeCompare(personB.name);
-				        break;
 				    case 'priority':
 				        return personA.priority - personB.priority;
-				        break;
+				    case 'featured':
+				    	return -1;
 				    default:
 				        return -1;
 				}
@@ -48,8 +48,10 @@ class Filterset extends React.Component {
 	render() {
 		return (
 			<form className="filterset">
-				<Filter />
-				<Sorter />
+				<Filter 
+					handleFilter={this.props.handleFilter} />
+				<Sorter
+					handleSort={this.props.handleSort} />
 			</form>
 		);
 	}
@@ -57,13 +59,15 @@ class Filterset extends React.Component {
 
 class Filter extends React.Component {
 	render() {
+		var that = this;
 		var categories = data.data.reduce(function(carry, item){
 			if(item.category && !~carry.indexOf(item.category)) { carry.push(item.category); }
 			return carry;
 		}, [] );
 		var inputList = categories.sort().map(function(category){
 			return (
-				<div key={category}>
+				<div key={category}
+					onClick={(e) => that.props.handleFilter(category)} >
 					<input 
 						type="radio" 
 						key={"radio-"+category}
@@ -87,10 +91,11 @@ class Filter extends React.Component {
 
 class Sorter extends React.Component {
 	render() {
+		var that = this;
 		return (
 			<div className="sorter">
 				<span>Sort By </span>
-				<select>
+				<select onChange={(e) => that.props.handleSort(e.target.value)}>
 					<option value="featured" key="featured">Featured</option>
 					<option value="az" key="az">A - Z</option>
 					<option value="priority" key="priority">Priority</option>
@@ -105,29 +110,29 @@ class Content extends React.Component {
 		super(props);
 		this.state = {
 			filteredBy: '',
-			sortedBy: ''
+			sortedBy: 'featured'
 		};
 	}
 	handleFilter(newFilter) {
 		this.setState({
-			filteredBy: newFilter,
-			sortedBy: this.state.sortedBy
+			filteredBy: newFilter
 		})
 	}
 	handleSort(newSort) {
 		this.setState({
-			filteredBy: this.state.filteredBy,
 			sortedBy: newSort
 		})
 	}
 	render() {
 		return (
 			<div className="content">
-				<Filterset />
+				<Filterset
+					handleFilter={(newFilter)=>this.handleFilter(newFilter)}
+					handleSort={(newSort)=>this.handleSort(newSort)} />
 				<hr />
 				<Grid 
-				filteredBy={this.state.filteredBy}
-				sortedBy={this.state.sortedBy} />
+					filteredBy={this.state.filteredBy}
+					sortedBy={this.state.sortedBy} />
 			</div>
 		);
 	}
