@@ -23,13 +23,11 @@ class Grid extends React.Component {
 				        return personA.name.localeCompare(personB.name);
 				    case 'priority':
 				        return personA.priority - personB.priority;
-				    case 'featured':
-				    	return -1;
 				    default:
 				        return -1;
 				}
 			}).filter(function(person){
-				if( '' === that.props.filteredBy ) {
+				if( '' === that.props.filteredBy || 'Show All' === that.props.filteredBy ) {
 					return true;
 				}
 				return person.category === that.props.filteredBy
@@ -49,6 +47,7 @@ class Filterset extends React.Component {
 		return (
 			<form className="filterset">
 				<Filter 
+					currentFilter={this.props.currentFilter}
 					handleFilter={this.props.handleFilter} />
 				<Sorter
 					handleSort={this.props.handleSort} />
@@ -64,6 +63,7 @@ class Filter extends React.Component {
 			if(item.category && !~carry.indexOf(item.category)) { carry.push(item.category); }
 			return carry;
 		}, [] );
+		categories.splice(0,0,'Show All');
 		var inputList = categories.sort().map(function(category){
 			return (
 				<div key={category}
@@ -72,7 +72,8 @@ class Filter extends React.Component {
 						type="radio" 
 						key={"radio-"+category}
 					 	name="category"
-					 	value={"category"+category} />
+					 	value={"category"+category}
+					 	checked={category===that.props.currentFilter ? 'checked' : ''} />
 					<label
 						htmlFor={"category"+category}
 						key={"label-"+category} >
@@ -128,6 +129,7 @@ class Content extends React.Component {
 			<div className="content">
 				<Filterset
 					handleFilter={(newFilter)=>this.handleFilter(newFilter)}
+					currentFilter={this.state.filteredBy}
 					handleSort={(newSort)=>this.handleSort(newSort)} />
 				<hr />
 				<Grid 
